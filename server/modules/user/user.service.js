@@ -73,11 +73,23 @@ export const UserService = {
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES || "7d" }
+      { expiresIn: process.env.JWT_EXPIRES || "7d" },
     );
 
     const userObj = user.toObject();
     delete userObj.password;
     return { user: userObj, token };
+  },
+  // LOGOUT USER ====================================================================
+  async logoutUser(id) {
+    let user;
+
+    user = await User.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    user = await User.findByIdAndUpdate(id, { status: "inactive" }, { new: true });
+
+    return user;
   },
 };

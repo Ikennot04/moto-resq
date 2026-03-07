@@ -17,6 +17,11 @@ const UserSchema = new Schema(
     phone: { type: String, required: true },
     profile_image: { type: String, required: false },
     vehicles: { type: [VehicleSchema], required: false },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
