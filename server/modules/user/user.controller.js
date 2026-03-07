@@ -11,3 +11,12 @@ export const signupUser = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const loginUser = async (req, res) => {
+  try {
+    const { user, token } = await UserService.loginUser(req?.body);
+    res.status(200).json({ success: true, data: user, token });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

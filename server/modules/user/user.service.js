@@ -11,16 +11,15 @@ async function deleteUserImageIfExists(imgPath) {
   try {
     await fs.unlink(imgPath);
   } catch (err) {
-    if (err.code !== "ENOENT") console.error("Failed to delete user image:", err);
+    if (err.code !== "ENOENT")
+      console.error("Failed to delete user image:", err);
   }
 }
 
 export const UserService = {
   // SIGN UP USER ====================================
   async signupUser(data, userImage) {
-    const img_path = userImage
-      ? path.join("images", "user", userImage)
-      : null;
+    const img_path = userImage ? path.join("images", "user", userImage) : null;
 
     // Validations
     if (!data?.email || !validator.isEmail(data.email)) {
@@ -55,5 +54,30 @@ export const UserService = {
       await deleteUserImageIfExists(img_path);
       throw err;
     }
+  },
+  // LOGIN USER ====================================
+  async loginUser(data) {
+    // Validations
+    const user = await User.findOne({ email: data.email });
+    if (!user) {
+      const error = new Error("Email not found");
+      throw error;
+    }
+
+    const isMatch = await bcrypt.compare(data.password, user.password);
+    if (!isMatch) {
+      const error = new Error("Invalid password");
+      throw error;
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES || "7d" }
+    );
+
+    const userObj = user.toObject();
+    delete userObj.password;
+    return { user: userObj, token };
   },
 };
