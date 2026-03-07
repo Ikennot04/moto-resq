@@ -92,4 +92,9 @@ export const UserService = {
 
     return user;
   },
+  // GET ALL USERS ===================================================================
+  async getAllUsers() {
+    const users = await User.find();
+    return users;
+  },
 };

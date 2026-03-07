@@ -19,7 +19,7 @@ const UserSchema = new Schema(
     vehicles: { type: [VehicleSchema], required: false },
     status: {
       type: String,
-      enum: ["active", "inactive"],
+      enum: ["active", "inactive", "suspended"],
       default: "active",
     },
   },
