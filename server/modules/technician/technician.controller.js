@@ -14,3 +14,21 @@ export const createTechnician = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const getAllTechnicians = async (req, res) => {
+  try {
+    const technicians = await TechnicianService.getAllTechnicians();
+    res.status(200).json({ success: true, data: technicians });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const getTechnicianById = async (req, res) => {
+  try {
+    const technician = await TechnicianService.getTechnicianById(req.params.id);
+    res.status(200).json({ success: true, data: technician });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

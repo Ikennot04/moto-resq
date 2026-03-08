@@ -16,6 +16,7 @@ async function deleteTechnicianImageIfExists(imgPath) {
 }
 
 export const TechnicianService = {
+  // CREATE TECHNICIAN =========================================
   async createTechnician(data, profileImage) {
     const img_path = profileImage
       ? path.join("images", "technician", profileImage)
@@ -61,5 +62,15 @@ export const TechnicianService = {
       await deleteTechnicianImageIfExists(img_path);
       throw err;
     }
+  },
+  // GET ALL TECHNICIANS =========================================
+  async getAllTechnicians() {
+    const technicians = await Technician.find();
+    return technicians;
+  },
+  // GET TECHNICIAN BY ID =========================================
+  async getTechnicianById(id) {
+    const technician = await Technician.findById(id);
+    return technician;
   },
 };
