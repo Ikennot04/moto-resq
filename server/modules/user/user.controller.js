@@ -39,7 +39,7 @@ export const getAllUsers = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 
 export const getUserById = async (req, res) => {
   try {
@@ -50,7 +50,7 @@ export const getUserById = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 
 export const updateUser = async (req, res) => {
   try {
@@ -58,9 +58,33 @@ export const updateUser = async (req, res) => {
     const userData = JSON.parse(req?.body?.data);
     const profile_image = req.file?.filename;
 
-    const user = await UserService.updateUser(userId, {...userData, profile_image});
+    const user = await UserService.updateUser(userId, {
+      ...userData,
+      profile_image,
+    });
     res.status(200).json({ success: true, data: user });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-} 
+};
+
+export const getUserVehicles = async (req, res) => {
+  try {
+    const userId = req?.params?.id;
+    const vehicles = await UserService.getUserVehicles(userId);
+    res.status(200).json({ success: true, data: vehicles });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const addUserVehicle = async (req, res) => {
+  try {
+    const userId = req?.params?.id;
+    const vehicleData = req?.body;
+    const vehicle = await UserService.addUserVehicle(userId, vehicleData);
+    res.status(201).json({ success: true, data: vehicle });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

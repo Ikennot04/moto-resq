@@ -6,7 +6,9 @@ import {
   logoutUser,
   getAllUsers,
   getUserById,
-  updateUser
+  updateUser,
+  getUserVehicles,
+  addUserVehicle,
 } from "./user.controller.js";
 
 const router = express.Router();
@@ -20,5 +22,9 @@ router.patch("/auth/logout/:id", logoutUser);
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 router.patch("/:id", upload.single("image"), updateUser);
+
+// user vehicles
+router.get("/:id/vehicles", getUserVehicles);
+router.post("/:id/vehicles", addUserVehicle);
 
 export default router;

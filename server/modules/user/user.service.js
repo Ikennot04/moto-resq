@@ -144,4 +144,25 @@ export const UserService = {
     );
     return updatedUser;
   },
+  // GET USER VEHICLES ===================================================================
+  async getUserVehicles(id) {
+    const user = await User.findById(id).select("vehicles");
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user.vehicles || [];
+  },
+  // ADD USER VEHICLE ===================================================================
+  async addUserVehicle(id, vehicleData) {
+    const user = await User.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (!user.vehicles) {
+      user.vehicles = [];
+    }
+    user.vehicles.push(vehicleData);
+    await user.save();
+    return user.vehicles[user.vehicles.length - 1];
+  },
 };
