@@ -23,6 +23,7 @@ const TechnicianSchema = new Schema(
     email: { type: String, required: true, unique: true, lowercase: true },
     phone: { type: String, required: true },
     password: { type: String, required: true },
+    profile_image: { type: String, required: false, default: "default.png" },
     expertise: {
       type: [String],
       enum: ["Battery", "Towing", "Flat Tire", "Engine", "Electrical", "Brakes", "Other"],
