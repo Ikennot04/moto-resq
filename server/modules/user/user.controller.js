@@ -88,3 +88,28 @@ export const addUserVehicle = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const updateUserVehicle = async (req, res) => {
+  try {
+    const userId = req?.params?.id;
+    const vehicleId = req?.params?.vehicleId;
+    const vehicleData = req?.body;
+    
+
+    const vehicle = await UserService.updateUserVehicle(userId, vehicleId, vehicleData);
+    res.status(200).json({ success: true, data: vehicle });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteUserVehicle = async (req, res) => {
+  try {
+    const userId = req?.params?.id;
+    const vehicleId = req?.params?.vehicleId;
+    await UserService.deleteUserVehicle(userId, vehicleId);
+    res.status(200).json({ success: true, message: "Vehicle deleted" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

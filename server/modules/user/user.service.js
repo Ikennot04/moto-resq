@@ -165,4 +165,35 @@ export const UserService = {
     await user.save();
     return user.vehicles[user.vehicles.length - 1];
   },
+  // UPDATE USER VEHICLE ===================================================================
+  async updateUserVehicle(userId, vehicleId, vehicleData) {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    const vehicle = user.vehicles?.id(vehicleId);
+    if (!vehicle) {
+      throw new Error("Vehicle not found");
+    }
+    if (vehicleData.type !== undefined) vehicle.type = vehicleData.type;
+    if (vehicleData.brand !== undefined) vehicle.brand = vehicleData.brand;
+    if (vehicleData.model !== undefined) vehicle.model = vehicleData.model;
+    if (vehicleData.plate_number !== undefined) vehicle.plate_number = vehicleData.plate_number;
+    await user.save();
+    return vehicle;
+  },
+  // DELETE USER VEHICLE ===================================================================
+  async deleteUserVehicle(userId, vehicleId) {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    const vehicle = user.vehicles?.id(vehicleId);
+    if (!vehicle) {
+      throw new Error("Vehicle not found");
+    }
+    user.vehicles.pull(vehicleId);
+    await user.save();
+    return { deleted: true, vehicleId };
+  },
 };
