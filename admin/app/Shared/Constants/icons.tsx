@@ -8,16 +8,24 @@ import {
   Settings,
   LogOut,
   User,
+  Search,
+  Bell,
+  MessageCircleQuestionMark,
+  ChevronDown,
 } from "lucide-react";
 
 export const ICONS = {
   eye_on: Eye,
   eye_off: EyeOff,
-  dashboard:LayoutDashboard,
-  users:Users,
+  dashboard: LayoutDashboard,
+  users: Users,
   user_cog: UserCog,
   file_text: FileText,
   settings: Settings,
   logout: LogOut,
   user: User,
+  search: Search,
+  bell: Bell,
+  help: MessageCircleQuestionMark,
+  drop_down: ChevronDown,
 };
