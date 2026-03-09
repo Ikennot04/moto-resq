@@ -12,6 +12,11 @@ import {
   Bell,
   MessageCircleQuestionMark,
   ChevronDown,
+  MoveRight,
+  MessageSquareText,
+  Phone,
+  Drill,
+  ReceiptText,
 } from "lucide-react";
 
 export const ICONS = {
@@ -28,4 +33,9 @@ export const ICONS = {
   bell: Bell,
   help: MessageCircleQuestionMark,
   drop_down: ChevronDown,
+  move_right: MoveRight,
+  message: MessageSquareText,
+  phone: Phone,
+  drill: Drill,
+  receipt: ReceiptText,
 };
