@@ -6,7 +6,7 @@ import { ICONS } from "@/app/Shared/Constants/icons";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen bg-gray-100">
-      <aside className="w-72 bg-blue-600 text-white flex flex-col rounded-tr-[120px] p-8">
+      <aside className="w-72 text-white flex flex-col rounded-tr-[120px] p-8" style={{backgroundColor: "#1e88e5"}}>
         <div className="flex items-center gap-2 mb-2">
           <Image src="/assets/motoresq_logo.png" alt="MotoResQ Logo" width={100} height={100} />
           <h1 className="text-2xl font-semibold" style={{ marginLeft: "-10px" }}>
