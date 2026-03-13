@@ -13,4 +13,9 @@ export const ServiceRequestService = {
     const serviceRequest = ServiceRequest.find();
     return serviceRequest;
   },
+  // GET SERVICE REQUEST BY ID ===========================================
+  async getServiceRequestById(id) {
+    const serviceRequest = ServiceRequest.findById(id);
+    return serviceRequest;
+  },
 };
