@@ -55,8 +55,7 @@ export const updateServiceRequest = async (req, res) => {
 
     const serviceRequest = await ServiceRequestService.updateServiceRequest(
       requestId,
-      {...requestData,
-      image: requestImg,}
+      { ...requestData, image: requestImg },
     );
 
     res.status(200).json({ success: true, data: serviceRequest });
@@ -70,6 +69,18 @@ export const updateServiceRequest = async (req, res) => {
       }
     }
 
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteServiceRequest = async (req, res) => {
+  try {
+    const requestId = req?.params?.id;
+    const serviceRequest =
+      await ServiceRequestService.deleteServiceRequest(requestId);
+
+    res.status(200).json({ success: true, data: serviceRequest });
+  } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
 };

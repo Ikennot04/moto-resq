@@ -13,12 +13,12 @@ export const ServiceRequestService = {
   },
   // GET ALL SERVICE REQUEST ==============================================
   async getAllServiceRequest() {
-    const serviceRequest = ServiceRequest.find();
+    const serviceRequest = await ServiceRequest.find();
     return serviceRequest;
   },
   // GET SERVICE REQUEST BY ID ===========================================
   async getServiceRequestById(id) {
-    const serviceRequest = ServiceRequest.findById(id);
+    const serviceRequest = await ServiceRequest.findById(id);
     return serviceRequest;
   },
   // UPDATE SERVICE REQUEST ====================================
@@ -27,11 +27,7 @@ export const ServiceRequestService = {
     let oldImage = serviceRequest?.image;
 
     // If a new image is being set and it's different from the old one, remove the old image (unless it's default.png)
-    if (
-      data?.image &&
-      oldImage &&
-      data.image !== oldImage
-    ) {
+    if (data?.image && oldImage && data.image !== oldImage) {
       const imgPath = path.join("images", "service_request", oldImage);
       console.log(imgPath);
       fs.unlink(imgPath, (err) => {
@@ -52,5 +48,10 @@ export const ServiceRequestService = {
       { returnDocument: "after" },
     );
     return updatedRequest;
+  },
+  // DELETE SERVICE REQUEST =========================================
+  async deleteServiceRequest(id) {
+    const request = await ServiceRequest.findByIdAndDelete(id);
+    return request;
   },
 };
