@@ -32,3 +32,15 @@ export const getReviewsByUser = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const updateReview = async (req, res) => {
+  try {
+    const reviewId = req.params.id;
+    const updateData = req.body;
+    const updatedReview = await ReviewService.updateReview(reviewId, updateData);
+
+    res.status(200).json({ success: true, data: updatedReview });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
