@@ -35,7 +35,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/technicians", technicianRoutes);
 app.use("/api/chats", chatRoutes);
 app.use("/api/service-request", serviceRequestRoutes);
-app.user("/api/review", reviewRoutes);
+app.use("/api/review", reviewRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
