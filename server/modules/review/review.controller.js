@@ -44,3 +44,14 @@ export const updateReview = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const softDeleteReview = async (req, res) => {
+  try {
+    const reviewId = req.params.id;
+    const result = await ReviewService.softDeleteReview(reviewId);
+
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
