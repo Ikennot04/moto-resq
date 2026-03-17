@@ -22,6 +22,8 @@ import {
   ChevronsUpDown,
   ChevronRight,
   ChevronLeft,
+  Ellipsis,
+  X,
 } from "lucide-react";
 
 export const ICONS = {
@@ -48,4 +50,6 @@ export const ICONS = {
   expand_all: ChevronsUpDown,
   right: ChevronRight,
   left: ChevronLeft,
+  ellipsis: Ellipsis,
+  close: X,
 };
