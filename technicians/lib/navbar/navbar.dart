@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:technicians/pages/homepage/dashboard.dart';
-import 'package:technicians/pages/homepage/transaction.dart';
-import 'package:technicians/pages/homepage/chats.dart';
-import 'package:technicians/pages/homepage/profile.dart';
+import 'package:technicians/pages/transaction/transaction.dart';
+import 'package:technicians/pages/chat/chats.dart';
+import 'package:technicians/pages/profile/profile.dart';
 
 class NavBar extends StatelessWidget {
   final int selectedIndex;
